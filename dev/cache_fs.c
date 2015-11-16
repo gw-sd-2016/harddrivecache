@@ -1,14 +1,3 @@
-/*
-  FUSE: Filesystem in Userspace
-  Copyright (C) 2001-2007  Miklos Szeredi <miklos@szeredi.hu>
-  Copyright (C) 2011       Sebastian Pipping <sebastian@pipping.org>
-
-  This program can be distributed under the terms of the GNU GPL.
-  See the file COPYING.
-
-  gcc -Wall fusexmp.c `pkg-config fuse --cflags --libs` -o fusexmp
-*/
-
 #define FUSE_USE_VERSION 26
 
 #ifdef HAVE_CONFIG_H
@@ -34,18 +23,30 @@
 #include <sys/xattr.h>
 #endif
 
-struct list_node{
-	char* path;
-	struct list_node* next;
-};
+#include "log.h"
+#include "list.h"
+#define HD_PATH "/home/timstamler/harddrivecache/mnt/hd"
+#define SSD_PATH "/home/timstamler/harddrivecache/mnt/ssd"
 
-struct list_node job_head;
+struct linked_list* cache_list;
 
+char* get_hd_path(const char* path){
+	char* new_path = malloc(strlen(path) + strlen(HD_PATH));
+	sprintf(new_path, "%s%s", HD_PATH, path);
+	return new_path;
+}
+
+char* get_ssd_path(const char* path){
+	char* new_path = malloc(strlen(path) + strlen(SSD_PATH));
+	sprintf(new_path, "%s%s", SSD_PATH, path);
+	return new_path;
+}
 static int xmp_getattr(const char *path, struct stat *stbuf)
 {
 	int res;
-
-	res = lstat(path, stbuf);
+	char* new_path = get_hd_path(path);
+	res = lstat(new_path, stbuf);
+	free(new_path);
 	if (res == -1)
 		return -errno;
 
@@ -55,8 +56,9 @@ static int xmp_getattr(const char *path, struct stat *stbuf)
 static int xmp_access(const char *path, int mask)
 {
 	int res;
-
-	res = access(path, mask);
+	char* new_path = get_hd_path(path);
+	res = access(new_path, mask);
+	free(new_path);
 	if (res == -1)
 		return -errno;
 
@@ -66,8 +68,9 @@ static int xmp_access(const char *path, int mask)
 static int xmp_readlink(const char *path, char *buf, size_t size)
 {
 	int res;
-
-	res = readlink(path, buf, size - 1);
+	char* new_path = get_hd_path(path);
+	res = readlink(new_path, buf, size - 1);
+	free(new_path);
 	if (res == -1)
 		return -errno;
 
@@ -84,8 +87,11 @@ static int xmp_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
 
 	(void) offset;
 	(void) fi;
+	
+	char* new_path = get_hd_path(path);
+	dp = opendir(new_path);
+	free(new_path);
 
-	dp = opendir(path);
 	if (dp == NULL)
 		return -errno;
 
@@ -108,14 +114,17 @@ static int xmp_mknod(const char *path, mode_t mode, dev_t rdev)
 
 	/* On Linux this could just be 'mknod(path, mode, rdev)' but this
 	   is more portable */
+	char* new_path = get_hd_path(path);
+			
 	if (S_ISREG(mode)) {
-		res = open(path, O_CREAT | O_EXCL | O_WRONLY, mode);
+		res = open(new_path, O_CREAT | O_EXCL | O_WRONLY, mode);
 		if (res >= 0)
 			res = close(res);
 	} else if (S_ISFIFO(mode))
-		res = mkfifo(path, mode);
+		res = mkfifo(new_path, mode);
 	else
-		res = mknod(path, mode, rdev);
+		res = mknod(new_path, mode, rdev);
+	free(new_path);
 	if (res == -1)
 		return -errno;
 
@@ -125,8 +134,10 @@ static int xmp_mknod(const char *path, mode_t mode, dev_t rdev)
 static int xmp_mkdir(const char *path, mode_t mode)
 {
 	int res;
+	char* new_path = get_hd_path(path);
+	res = mkdir(new_path, mode);
+	free(new_path);
 
-	res = mkdir(path, mode);
 	if (res == -1)
 		return -errno;
 
@@ -136,8 +147,10 @@ static int xmp_mkdir(const char *path, mode_t mode)
 static int xmp_unlink(const char *path)
 {
 	int res;
+	char* new_path = get_hd_path(path);
+	res = unlink(new_path);
+	free(new_path);
 
-	res = unlink(path);
 	if (res == -1)
 		return -errno;
 
@@ -147,14 +160,17 @@ static int xmp_unlink(const char *path)
 static int xmp_rmdir(const char *path)
 {
 	int res;
-
-	res = rmdir(path);
+	char* new_path = get_hd_path(path);
+	res = rmdir(new_path);
+	free(new_path);
+		
 	if (res == -1)
 		return -errno;
 
 	return 0;
 }
 
+//TODO: fix for use with HD PATH
 static int xmp_symlink(const char *from, const char *to)
 {
 	int res;
@@ -165,7 +181,7 @@ static int xmp_symlink(const char *from, const char *to)
 
 	return 0;
 }
-
+//TODO: fix for use with HD PATH
 static int xmp_rename(const char *from, const char *to)
 {
 	int res;
@@ -177,6 +193,7 @@ static int xmp_rename(const char *from, const char *to)
 	return 0;
 }
 
+//TODO: fix for use with HD PATH
 static int xmp_link(const char *from, const char *to)
 {
 	int res;
@@ -191,8 +208,10 @@ static int xmp_link(const char *from, const char *to)
 static int xmp_chmod(const char *path, mode_t mode)
 {
 	int res;
-
-	res = chmod(path, mode);
+	char* new_path = get_hd_path(path);
+	res = chmod(new_path, mode);
+	free(new_path);
+	
 	if (res == -1)
 		return -errno;
 
@@ -202,8 +221,10 @@ static int xmp_chmod(const char *path, mode_t mode)
 static int xmp_chown(const char *path, uid_t uid, gid_t gid)
 {
 	int res;
-
-	res = lchown(path, uid, gid);
+	char* new_path = get_hd_path(path);
+	res = lchown(new_path, uid, gid);
+	free(new_path);
+	
 	if (res == -1)
 		return -errno;
 
@@ -213,8 +234,10 @@ static int xmp_chown(const char *path, uid_t uid, gid_t gid)
 static int xmp_truncate(const char *path, off_t size)
 {
 	int res;
+	char* new_path = get_hd_path(path);
+	res = truncate(new_path, size);
+	free(new_path);
 
-	res = truncate(path, size);
 	if (res == -1)
 		return -errno;
 
@@ -238,8 +261,10 @@ static int xmp_utimens(const char *path, const struct timespec ts[2])
 static int xmp_open(const char *path, struct fuse_file_info *fi)
 {
 	int res;
+	char* new_path = get_hd_path(path);
+	res = open(new_path, fi->flags);
+	free(new_path);
 
-	res = open(path, fi->flags);
 	if (res == -1)
 		return -errno;
 
@@ -252,9 +277,12 @@ static int xmp_read(const char *path, char *buf, size_t size, off_t offset,
 {
 	int fd;
 	int res;
+	
+	char* new_path = get_hd_path(path);
+	fd = open(new_path, O_RDONLY);
+	free(new_path);
 
 	(void) fi;
-	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return -errno;
 
@@ -271,9 +299,12 @@ static int xmp_write(const char *path, const char *buf, size_t size,
 {
 	int fd;
 	int res;
+	
+	char* new_path = get_hd_path(path);
+	fd = open(new_path, O_WRONLY);
+	free(new_path);
 
 	(void) fi;
-	fd = open(path, O_WRONLY);
 	if (fd == -1)
 		return -errno;
 
@@ -288,8 +319,10 @@ static int xmp_write(const char *path, const char *buf, size_t size,
 static int xmp_statfs(const char *path, struct statvfs *stbuf)
 {
 	int res;
+	char* new_path = get_hd_path(path);
+	res = statvfs(new_path, stbuf);
+	free(new_path);
 
-	res = statvfs(path, stbuf);
 	if (res == -1)
 		return -errno;
 
@@ -413,16 +446,18 @@ static struct fuse_operations xmp_oper = {
 #endif
 };
 
-int cache_fuse_fn()
-{
-	char* argv[2] = { "./fusexmp", "/tmp/cache" };
-	return fuse_main(2, argv, &xmp_oper, NULL);
+int check_cache(char* path){
+	return ll_contains(cache_list, path);
 }
+
+void cache_add(char* path){
+	ll_add(cache_list, path);
+}
+
 int main()//int argc, char *argv[])
 {
 	umask(0);
-	char* argv[3] = { "./fusexmp", "/home/timstamler", "/tmp/fuse" };
-	pthread_t cache_thread;
-	//pthread_create(&cache_thread,NULL,cache_fuse_fn,NULL);
-	return fuse_main(3, argv, &xmp_oper, NULL);
+	cache_list = ll_create();
+	char* argv[2] = { "./fusexmp", "../fs" };
+	return fuse_main(2, argv, &xmp_oper, NULL);
 }
