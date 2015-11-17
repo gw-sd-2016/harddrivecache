@@ -1,10 +1,10 @@
-OBJS=cache_fs.o 
+OBJS=hdc_fs.o cache.o  
 CFLAGS=-O3 -I. -w
 LIBS=-pthread
 CC=gcc
-BIN=cache_fs
+BIN=hdc_fs
 FUSE=`pkg-config fuse --cflags --libs`
-DEPS=log.h
+DEPS=log.h disk_info.h cache.h
 	
 all:
 	make $(OBJS)
@@ -16,4 +16,6 @@ all:
 clean:
 	rm $(OBJS)
 	rm $(BIN)
+
+umount:	
 	fusermount -u ../fs

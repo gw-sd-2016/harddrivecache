@@ -1,3 +1,5 @@
+#ifndef LOG
+#define LOG
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
@@ -18,3 +20,4 @@ static inline void log_msg(char* msg)
   fprintf (log_file, "%s --- %s\n", time_str, msg );
   fclose(log_file);
 }	
+#endif
