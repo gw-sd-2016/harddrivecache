@@ -268,7 +268,10 @@ static int hdc_read(const char *path, char *buf, size_t size, off_t offset,
 	if(cache_exists(path))
 		new_path = get_ssd_path(path);
 	else
+	{
 		new_path = get_hd_path(path);
+		cache_add(path);
+	}
 
 	fd = open(new_path, O_RDONLY);
 	free(new_path);
@@ -282,6 +285,8 @@ static int hdc_read(const char *path, char *buf, size_t size, off_t offset,
 		res = -errno;
 
 	close(fd);
+	log_msg("read");
+	log_msg(new_path);
 	return res;
 }
 
@@ -304,6 +309,8 @@ static int hdc_write(const char *path, const char *buf, size_t size,
 		res = -errno;
 
 	close(fd);
+	log_msg("write");
+	log_msg(new_path);
 	cache_add(path);
 	return res;
 }
