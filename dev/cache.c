@@ -18,7 +18,7 @@ int cache_add(const char* path){
 	char* ssd_path = get_ssd_path(path);
 	char ch;
 
-	log_msg(hd_path);
+	log_msg("cache");
 	log_msg(ssd_path);
 	
 	FILE* hd_file, *ssd_file;
