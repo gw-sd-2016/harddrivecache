@@ -137,6 +137,8 @@ static int hdc_unlink(const char *path)
 	res = unlink(new_path);
 	free(new_path);
 
+	if(cache_exists(path)) cache_remove(path);
+
 	if (res == -1)
 		return -errno;
 
@@ -149,7 +151,12 @@ static int hdc_rmdir(const char *path)
 	char* new_path = get_hd_path(path);
 	res = rmdir(new_path);
 	free(new_path);
-		
+
+	if(cache_exists(path)){
+		char* ssd_path = get_ssd_path(path);
+		rmdir(ssd_path);
+		free(ssd_path);
+	}		
 	if (res == -1)
 		return -errno;
 
@@ -265,16 +272,18 @@ static int hdc_read(const char *path, char *buf, size_t size, off_t offset,
 	int res;
 	
 	char* new_path;
-	if(cache_exists(path))
+	log_msg("read");
+	if(cache_exists(path)){
 		new_path = get_ssd_path(path);
-	else
-	{
+		log_msg(new_path);
+	}
+	else{
 		new_path = get_hd_path(path);
+		log_msg(new_path);
 		cache_add(path);
 	}
 
 	fd = open(new_path, O_RDONLY);
-	free(new_path);
 
 	(void) fi;
 	if (fd == -1)
@@ -285,8 +294,7 @@ static int hdc_read(const char *path, char *buf, size_t size, off_t offset,
 		res = -errno;
 
 	close(fd);
-	log_msg("read");
-	log_msg(new_path);
+	free(new_path);
 	return res;
 }
 
@@ -298,7 +306,6 @@ static int hdc_write(const char *path, const char *buf, size_t size,
 	
 	char* new_path = get_hd_path(path);
 	fd = open(new_path, O_WRONLY);
-	free(new_path);
 
 	(void) fi;
 	if (fd == -1)
@@ -311,6 +318,7 @@ static int hdc_write(const char *path, const char *buf, size_t size,
 	close(fd);
 	log_msg("write");
 	log_msg(new_path);
+	free(new_path);
 	cache_add(path);
 	return res;
 }

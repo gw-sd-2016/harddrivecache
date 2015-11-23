@@ -4,7 +4,7 @@
 #include <time.h>
 #include <string.h>
 
-#define LOG_FILE "/home/timstamler/harddrivecache/log/cache_fs.log"
+#define LOG_FILE "/home/timstamler/harddrivecache/log/hdc_fs.log"
 
 static inline void log_msg(char* msg)
 {
