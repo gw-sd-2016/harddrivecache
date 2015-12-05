@@ -23,6 +23,7 @@
 #include <sys/xattr.h>
 #endif
 
+#include <hash.h>
 #include <log.h>
 #include <cache.h>
 #include <disk_info.h>
