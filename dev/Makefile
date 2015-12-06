@@ -1,10 +1,10 @@
-OBJS=hdc_fs.o cache.o  
+OBJS=hdc_fs.o cache.o hash.o list.o 
 CFLAGS=-O3 -I. -w
 LIBS=-pthread
 CC=gcc
 BIN=hdc_fs
 FUSE=`pkg-config fuse --cflags --libs`
-DEPS=log.h disk_info.h cache.h
+DEPS=log.h disk_info.h cache.h hash.h list.h
 	
 all:
 	make $(OBJS)
