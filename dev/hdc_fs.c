@@ -23,7 +23,6 @@
 #include <sys/xattr.h>
 #endif
 
-#include <hash.h>
 #include <log.h>
 #include <cache.h>
 #include <disk_info.h>
@@ -458,5 +457,6 @@ int main()//int argc, char *argv[])
 {
 	umask(0);
 	char* argv[2] = { "./fusehdc", "../fs" };
+	cache_init();
 	return fuse_main(2, argv, &hdc_oper, NULL);
 }
