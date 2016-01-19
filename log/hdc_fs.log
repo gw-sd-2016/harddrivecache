@@ -1,0 +1,35 @@
+Tue Dec 15 13:30:34 2015 --- write
+Tue Dec 15 13:30:34 2015 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
+Tue Dec 15 13:30:34 2015 --- adding to cache
+Tue Dec 15 13:30:34 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Tue Dec 15 13:30:34 2015 --- searching
+Tue Dec 15 13:30:55 2015 --- read
+Tue Dec 15 13:30:55 2015 --- searching
+Path:/hello.txt LastRead:1450204234 LastWrite:1450204234 NumReads:1 NumWrites:1 Size:6
+Tue Dec 15 13:30:55 2015 --- cache hit
+Tue Dec 15 13:30:55 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Tue Dec 15 13:30:56 2015 --- read
+Tue Dec 15 13:30:56 2015 --- searching
+Path:/hello.txt LastRead:1450204255 LastWrite:1450204234 NumReads:2 NumWrites:1 Size:6
+Tue Dec 15 13:30:56 2015 --- cache hit
+Tue Dec 15 13:30:56 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Tue Dec 15 13:30:57 2015 --- read
+Tue Dec 15 13:30:57 2015 --- searching
+Path:/hello.txt LastRead:1450204256 LastWrite:1450204234 NumReads:3 NumWrites:1 Size:6
+Tue Dec 15 13:30:57 2015 --- cache hit
+Tue Dec 15 13:30:57 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Tue Dec 15 13:30:57 2015 --- read
+Tue Dec 15 13:30:57 2015 --- searching
+Path:/hello.txt LastRead:1450204257 LastWrite:1450204234 NumReads:4 NumWrites:1 Size:6
+Tue Dec 15 13:30:57 2015 --- cache hit
+Tue Dec 15 13:30:57 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Tue Dec 15 13:30:57 2015 --- read
+Tue Dec 15 13:30:57 2015 --- searching
+Path:/hello.txt LastRead:1450204257 LastWrite:1450204234 NumReads:5 NumWrites:1 Size:6
+Tue Dec 15 13:30:57 2015 --- cache hit
+Tue Dec 15 13:30:57 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Tue Dec 15 13:30:58 2015 --- read
+Tue Dec 15 13:30:58 2015 --- searching
+Path:/hello.txt LastRead:1450204257 LastWrite:1450204234 NumReads:6 NumWrites:1 Size:6
+Tue Dec 15 13:30:58 2015 --- cache hit
+Tue Dec 15 13:30:58 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
