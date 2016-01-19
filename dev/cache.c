@@ -4,13 +4,23 @@
 #include <sys/stat.h>
 #include <sys/time.h>
 
+#include <heap.h>
 #include <hash.h>
 #include <list.h>
 #include <cache.h>
 #include <disk_info.h>
 #include <log.h>
 
+#define MAX_CACHE 256000
+
+#define SIZE_BIAS 10
+#define READ_BIAS 10
+#define WRITE_BIAS 0
+#define TIME_BIAS 10
+
 struct hashTable* cache_table;
+struct heap* priority_heap;
+int current_size;
 
 int cache_exists(const char* path){
 	struct file_stat* file = table_search(cache_table, path);
@@ -26,7 +36,8 @@ int cache_exists(const char* path){
 			struct stat st;
 			stat(new_path, &st);
 			struct file_stat* file = file_stat_create(path, (int) time(0), (int) time(0), 1, 1, st.st_size);
-			table_add(&cache_table, file);
+			current_size += st.st_size;
+                        table_add(&cache_table, file);
 		}
 		free(new_path);
 		return 1;
@@ -72,7 +83,8 @@ int cache_add(const char* path){
 		struct stat st;
 		stat(hd_path, &st);
 		struct file_stat* file = file_stat_create(path, (int) time(0), (int) time(0), 1, 1, st.st_size);
-		table_add(&cache_table, file);
+		current_size += st.st_size;
+                table_add(&cache_table, file);
 	}
 	FILE* hd_file, *ssd_file;
 	hd_file = fopen(hd_path, "r");
@@ -96,7 +108,29 @@ int cache_remove(const char* path){
 	free(ssd_path);	
 	table_rem(cache_table, path);
 }
+int gen_priority(const char* path){
+        struct file_stat* file = table_search(cache_table, path);
+            
+        int size = SIZE_BIAS * MAX_CACHE / file->size;
+        int curr_time = (int) time(0);
+        int read_time = (curr_time-file->lastread)/(60000*TIME_BIAS);
+        int write_time = (curr_time-file->lastwrite)/(60000*TIME_BIAS);
+        
+        int read = file->numreads*read_time*READ_BIAS;
+        int write = file->numwrites*write_time*WRITE_BIAS;
+        int priority = size + read + write;
+
+        file->p = priority;
+        heap_delete(priority_heap, file->heap_pos);
+        heap_insert(priority_heap, file);
+
+        char print[256];
+        sprintf(print, "size:%d read/time:%d/%d write/time:%d/%d priority:%d", size, read, read_time, write, write_time, priority);
+        log_msg(print);
+}
 void cache_init(){
+        current_size = 0;
 	cache_table = table_create(10);
+        priority_heap = heap_create(10);
 }
 
