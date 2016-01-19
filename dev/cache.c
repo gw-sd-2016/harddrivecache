@@ -38,6 +38,7 @@ int cache_exists(const char* path){
 			struct file_stat* file = file_stat_create(path, (int) time(0), (int) time(0), 1, 1, st.st_size);
 			current_size += st.st_size;
                         table_add(&cache_table, file);
+                        while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
 		}
 		free(new_path);
 		return 1;
@@ -100,13 +101,17 @@ int cache_add(const char* path){
 	fclose(ssd_file);
 	free(hd_path);
 	free(ssd_path);
+
+        while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
+
 	return 0;
 }
 int cache_remove(const char* path){
 	char* ssd_path = get_ssd_path(path);
 	unlink(ssd_path);
 	free(ssd_path);	
-	table_rem(cache_table, path);
+	struct file_stat* file = table_rem(cache_table, path);
+        current_size -= file->size;
 }
 int gen_priority(const char* path){
         struct file_stat* file = table_search(cache_table, path);
