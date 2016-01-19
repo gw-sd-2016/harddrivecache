@@ -33,9 +33,17 @@ static int hdc_getattr(const char *path, struct stat *stbuf)
 	char* new_path = get_hd_path(path);
 	res = lstat(new_path, stbuf);
 	free(new_path);
+	
 	if (res == -1)
 		return -errno;
 
+	printf("Cache:\n");
+	/*new_path = get_ssd_path(path);
+	res = lstat(new_path, stbuf);
+	free(new_path);
+
+	if(res == -1)
+		return -errno;*/
 	return 0;
 }
 

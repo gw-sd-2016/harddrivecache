@@ -82,8 +82,8 @@ void ll_print(struct linkedList *ll)
 	FILE* log = fopen(LOG_FILE, "a");
 	while(move != NULL)
 	{
-		fprintf(log, "Path: %s: %d, %d, %d, %d\n", move->path, 
-		    move->lastread, move->lastwrite, move->numreads, move->numwrites);
+		fprintf(log, "Path:%s LastRead:%d LastWrite:%d NumReads:%d NumWrites:%d Size:%d\n", move->path, 
+		    move->lastread, move->lastwrite, move->numreads, move->numwrites, move->size);
 		move = move->next;
 	}
 	fclose(log);
