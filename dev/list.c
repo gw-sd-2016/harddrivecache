@@ -15,7 +15,8 @@ struct file_stat* file_stat_create(char* path, int lr, int lw, int nr, int nw, i
     newfile->lastwrite = lw;
     newfile->numreads = nr;
     newfile->numwrites = nw;
-	newfile->size = size;
+    newfile->size = size;
+    newfile->p = 0;
     newfile->next = NULL;
     
     return newfile;
@@ -82,8 +83,8 @@ void ll_print(struct linkedList *ll)
 	FILE* log = fopen(LOG_FILE, "a");
 	while(move != NULL)
 	{
-		fprintf(log, "Path:%s LastRead:%d LastWrite:%d NumReads:%d NumWrites:%d Size:%d\n", move->path, 
-		    move->lastread, move->lastwrite, move->numreads, move->numwrites, move->size);
+		fprintf(log, "Path:%s LastRead:%d LastWrite:%d NumReads:%d NumWrites:%d Size:%d, Priority:%d\n", move->path, 
+		    move->lastread, move->lastwrite, move->numreads, move->numwrites, move->size, move->p);
 		move = move->next;
 	}
 	fclose(log);

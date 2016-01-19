@@ -4,4 +4,5 @@
 int cache_exists(const char* path);
 int cache_add(const char* path);
 int cache_remove(const char* path);
+int gen_priority(const char* path);
 void cache_init();
