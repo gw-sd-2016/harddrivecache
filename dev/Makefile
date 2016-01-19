@@ -1,4 +1,4 @@
-OBJS=hdc_fs.o cache.o hash.o list.o 
+OBJS=hdc_fs.o cache.o hash.o list.o heap.o 
 CFLAGS=-O3 -I. -w
 LIBS=-pthread
 CC=gcc

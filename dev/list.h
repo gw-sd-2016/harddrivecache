@@ -13,8 +13,9 @@ struct file_stat{
     
     int lastread, lastwrite;
     int numreads, numwrites;
-	int size;
-    
+    int size, p;
+    int heap_pos;
+        
     struct file_stat* next;
 };
 
