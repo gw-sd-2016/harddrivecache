@@ -4,7 +4,7 @@ LIBS=-pthread
 CC=gcc
 BIN=hdc_fs
 FUSE=`pkg-config fuse --cflags --libs`
-DEPS=log.h disk_info.h cache.h hash.h list.h
+DEPS=log.h disk_info.h cache.h hash.h list.h heap.h
 	
 all:
 	make $(OBJS)

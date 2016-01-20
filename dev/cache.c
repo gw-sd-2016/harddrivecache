@@ -28,18 +28,19 @@ int cache_exists(const char* path){
 	table_print(cache_table);
 	if(access( new_path, R_OK ) != -1){
 		log_msg("cache hit");
-		if(file){
-			file->numreads++;
-			file->lastread = (int) time(0);
+		if(!file){
+			file = file_stat_create(path, 0, 0, 0, 0, 0);
+			get_data(file);
+			current_size += file->size;
+            table_add(&cache_table, file);
+			heap_insert(priority_heap, file);
 		}
-		else{
-			struct stat st;
-			stat(new_path, &st);
-			struct file_stat* file = file_stat_create(path, (int) time(0), (int) time(0), 1, 1, st.st_size);
-			current_size += st.st_size;
-                        table_add(&cache_table, file);
-                        while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
-		}
+		file->numreads++;
+		file->lastread = (int) time(0);
+		gen_priority(file);
+		print_data(file);
+
+        while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
 		free(new_path);
 		return 1;
 	}
@@ -76,16 +77,15 @@ int cache_add(const char* path){
 		
 	struct file_stat* file = table_search(cache_table, path);
 
-	if(file){
+	if(access( ssd_path, R_OK ) != -1){
+		if(!file){
+			file = file_stat_create(path, 0, 0, 0, 0, 0);
+			get_data(file);
+            table_add(&cache_table, file);
+			heap_insert(priority_heap, file);
+		}
 		file->numwrites++;
 		file->lastwrite = (int) time(0);
-	}
-	else{
-		struct stat st;
-		stat(hd_path, &st);
-		struct file_stat* file = file_stat_create(path, (int) time(0), (int) time(0), 1, 1, st.st_size);
-		current_size += st.st_size;
-                table_add(&cache_table, file);
 	}
 	FILE* hd_file, *ssd_file;
 	hd_file = fopen(hd_path, "r");
@@ -94,6 +94,21 @@ int cache_add(const char* path){
 	make_dirs(path);
 	ssd_file = fopen(ssd_path, "w");
 	if(ssd_file == NULL) return -1;
+	
+	struct stat st;
+	stat(hd_path, &st);
+	
+	if(!file){
+		file = file_stat_create(path, (int) time(0), (int) time(0), 1, 1, st.st_size);
+		table_add(&cache_table, file);
+		heap_insert(priority_heap, file);
+	}
+	file->size = st.st_size;
+	gen_priority(file);
+	print_data(file);
+
+	current_size += file->size;
+    while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
 
 	while((ch = fgetc(hd_file))!=EOF) fputc(ch, ssd_file);
 	
@@ -101,41 +116,58 @@ int cache_add(const char* path){
 	fclose(ssd_file);
 	free(hd_path);
 	free(ssd_path);
-
-        while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
-
 	return 0;
 }
 int cache_remove(const char* path){
 	char* ssd_path = get_ssd_path(path);
-	unlink(ssd_path);
+	int ret = unlink(ssd_path);
+	if(!ret){
+		char* data_path = get_data_path(path);
+		unlink(data_path);
+		free(data_path);
+	}
 	free(ssd_path);	
 	struct file_stat* file = table_rem(cache_table, path);
-        current_size -= file->size;
+    if(file) current_size -= file->size;
+	return ret;
 }
-int gen_priority(const char* path){
-        struct file_stat* file = table_search(cache_table, path);
-            
-        int size = SIZE_BIAS * MAX_CACHE / file->size;
-        int curr_time = (int) time(0);
-        int read_time = (curr_time-file->lastread)/(60000*TIME_BIAS);
-        int write_time = (curr_time-file->lastwrite)/(60000*TIME_BIAS);
+void gen_priority(struct file_stat* file){
+    int size = SIZE_BIAS * MAX_CACHE / file->size;
+    int curr_time = (int) time(0);
+    int read_time = (curr_time-file->lastread)/(60000*TIME_BIAS);
+    int write_time = (curr_time-file->lastwrite)/(60000*TIME_BIAS);
         
-        int read = file->numreads*read_time*READ_BIAS;
-        int write = file->numwrites*write_time*WRITE_BIAS;
-        int priority = size + read + write;
+    int read = file->numreads*read_time*READ_BIAS;
+    int write = file->numwrites*write_time*WRITE_BIAS;
+    int priority = size + read + write;
 
-        file->p = priority;
-        heap_delete(priority_heap, file->heap_pos);
-        heap_insert(priority_heap, file);
+	if(file->size > MAX_CACHE) file->p = 0;
+    else file->p = priority;
+       
+	heap_delete(priority_heap, file->heap_pos);
+    heap_insert(priority_heap, file);
 
-        char print[256];
-        sprintf(print, "size:%d read/time:%d/%d write/time:%d/%d priority:%d", size, read, read_time, write, write_time, priority);
-        log_msg(print);
+    char print[256];
+    sprintf(print, "size:%d read/time:%d/%d write/time:%d/%d priority:%d", size, read, read_time, write, write_time, priority);
+    log_msg(print);
+}
+void get_data(struct file_stat* file){
+	char* data_path = get_data_path(file->path);
+	FILE* data_file = fopen(data_path, "r");
+	fscanf(data_file, "%d:%d:%d:%d:%d:%d", &(file->lastread), &(file->lastwrite), &(file->numreads), &(file->numwrites), &(file->size), &(file->p));
+	fclose(data_file);
+	free(data_path);
+}
+void print_data(struct file_stat* file){
+	char* data_path = get_data_path(file->path);
+	FILE* data_file = fopen(data_path, "w");
+	fprintf(data_file, "%d:%d:%d:%d:%d:%d", file->lastread, file->lastwrite, file->numreads, file->numwrites, file->size, file->p);
+	fclose(data_file);
+	free(data_path);
 }
 void cache_init(){
-        current_size = 0;
+    current_size = 0;
 	cache_table = table_create(10);
-        priority_heap = heap_create(10);
+    priority_heap = heap_create(10);
 }
 
