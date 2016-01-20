@@ -33,3 +33,36 @@ Tue Dec 15 13:30:58 2015 --- searching
 Path:/hello.txt LastRead:1450204257 LastWrite:1450204234 NumReads:6 NumWrites:1 Size:6
 Tue Dec 15 13:30:58 2015 --- cache hit
 Tue Dec 15 13:30:58 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Tue Jan 19 22:22:57 2016 --- read
+Tue Jan 19 22:22:57 2016 --- searching
+Tue Jan 19 22:22:57 2016 --- cache miss
+Tue Jan 19 22:22:57 2016 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
+Tue Jan 19 22:22:57 2016 --- adding to cache
+Tue Jan 19 22:22:57 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Tue Jan 19 22:22:57 2016 --- searching
+Tue Jan 19 22:23:06 2016 --- read
+Tue Jan 19 22:23:06 2016 --- searching
+Path:/hello.txt LastRead:1453260177 LastWrite:1453260177 NumReads:1 NumWrites:1 Size:6, Priority:0
+Tue Jan 19 22:23:06 2016 --- cache miss
+Tue Jan 19 22:23:06 2016 --- /home/timstamler/harddrivecache/mnt/hd/random_dir/hello_again.txt
+Tue Jan 19 22:23:06 2016 --- adding to cache
+Tue Jan 19 22:23:06 2016 --- /home/timstamler/harddrivecache/mnt/ssd/random_dir/hello_again.txt
+Tue Jan 19 22:23:06 2016 --- searching
+Tue Jan 19 22:23:06 2016 --- /home/timstamler/harddrivecache/mnt/ssd/random_dir
+Tue Jan 19 22:32:08 2016 --- read
+Tue Jan 19 22:32:08 2016 --- searching
+Tue Jan 19 22:32:08 2016 --- cache hit
+Tue Jan 19 22:32:08 2016 --- size:426666 read/time:0/0 write/time:0/0 priority:426666
+Tue Jan 19 22:32:08 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Tue Jan 19 22:32:22 2016 --- write
+Tue Jan 19 22:32:22 2016 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
+Tue Jan 19 22:32:22 2016 --- adding to cache
+Tue Jan 19 22:32:22 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Tue Jan 19 22:32:22 2016 --- searching
+Tue Jan 19 22:32:22 2016 --- size:150588 read/time:0/0 write/time:0/0 priority:150588
+Tue Jan 19 22:32:25 2016 --- read
+Tue Jan 19 22:32:25 2016 --- searching
+Path:/hello.txt LastRead:1453260728 LastWrite:1453260742 NumReads:2 NumWrites:2 Size:17, Priority:150588
+Tue Jan 19 22:32:25 2016 --- cache hit
+Tue Jan 19 22:32:25 2016 --- size:150588 read/time:0/0 write/time:0/0 priority:150588
+Tue Jan 19 22:32:25 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
