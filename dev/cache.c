@@ -3,6 +3,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/time.h>
+#include <sqlite3.h>
 
 #include <heap.h>
 #include <hash.h>
@@ -38,7 +39,7 @@ int cache_exists(const char* path){
 		file->numreads++;
 		file->lastread = (int) time(0);
 		gen_priority(file);
-		print_data(file);
+		update_data(file);
 
         while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
 		free(new_path);
@@ -102,10 +103,13 @@ int cache_add(const char* path){
 		file = file_stat_create(path, (int) time(0), (int) time(0), 1, 1, st.st_size);
 		table_add(&cache_table, file);
 		heap_insert(priority_heap, file);
+		gen_priority(file);
+		insert_data(file);
 	}
-	file->size = st.st_size;
-	gen_priority(file);
-	print_data(file);
+	else{
+		file->size = st.st_size;
+		update_data(file);
+	}
 
 	current_size += file->size;
     while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
@@ -151,19 +155,89 @@ void gen_priority(struct file_stat* file){
     sprintf(print, "size:%d read/time:%d/%d write/time:%d/%d priority:%d", size, read, read_time, write, write_time, priority);
     log_msg(print);
 }
-void get_data(struct file_stat* file){
-	char* data_path = get_data_path(file->path);
-	FILE* data_file = fopen(data_path, "r");
-	fscanf(data_file, "%d:%d:%d:%d:%d:%d", &(file->lastread), &(file->lastwrite), &(file->numreads), &(file->numwrites), &(file->size), &(file->p));
-	fclose(data_file);
-	free(data_path);
+
+void callback(struct file_stat* file, int num_col, char** results, char** col_names){
+	file->lastread = atoi(results[1]);
+	file->lastwrite = atoi(results[2]);
+	file->numreads = atoi(results[3]);
+	file->numwrites = atoi(results[4]);
 }
-void print_data(struct file_stat* file){
-	char* data_path = get_data_path(file->path);
-	FILE* data_file = fopen(data_path, "w");
-	fprintf(data_file, "%d:%d:%d:%d:%d:%d", file->lastread, file->lastwrite, file->numreads, file->numwrites, file->size, file->p);
-	fclose(data_file);
-	free(data_path);
+int get_data(struct file_stat* file){
+	sqlite3 *db;
+	char sql[256];
+	char* err;
+
+	int ret = sqlite3_open(DB_PATH, &db);
+
+	sprintf(sql, "select * from file_stats where file='%s';", file->path);
+
+	if(ret){
+		log_msg("Can't open database!\n");
+		sqlite3_close(db);
+		return -1;
+	}
+
+	ret = sqlite3_exec(db, sql, callback, file, &err);
+
+	if(ret != SQLITE_OK){
+		log_msg("SQL error\n");
+		log_msg(err);
+		sqlite3_free(err);
+	} 
+	sqlite3_close(db);
+	return 0;
+}
+int update_data(struct file_stat* file){
+	sqlite3 *db;
+	char sql[512];
+	char* err;
+
+	int ret = sqlite3_open(DB_PATH, &db);
+
+	sprintf(sql, "update file_stats set lastread=%d,lastwrite=%d,numreads=%d,numwrites=%d where file='%s';", 
+		file->lastread, file->lastwrite, file->numreads, file->numwrites, file->path);
+
+	if(ret){
+		log_msg("Can't open database!\n");
+		sqlite3_close(db);
+		return -1;
+	}
+
+	ret = sqlite3_exec(db, sql, callback, file, &err);
+
+	if(ret != SQLITE_OK){
+		log_msg("SQL error\n");
+		log_msg(err);
+		sqlite3_free(err);
+	} 
+	sqlite3_close(db);
+	return 0;	
+}
+int insert_data(struct file_stat* file){
+	sqlite3 *db;
+	char sql[512];
+	char* err;
+
+	int ret = sqlite3_open(DB_PATH, &db);
+
+	sprintf(sql, "insert into file_stats values (%s, %d, %d, %d, %d);", 
+		file->path, file->lastread, file->lastwrite, file->numreads, file->numwrites);
+
+	if(ret){
+		log_msg("Can't open database!\n");
+		sqlite3_close(db);
+		return -1;
+	}
+
+	ret = sqlite3_exec(db, sql, callback, file, &err);
+
+	if(ret != SQLITE_OK){
+		log_msg("SQL error\n");
+		log_msg(err);
+		sqlite3_free(err);
+	} 
+	sqlite3_close(db);
+	return 0;	
 }
 void cache_init(){
     current_size = 0;

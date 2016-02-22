@@ -66,3 +66,127 @@ Path:/hello.txt LastRead:1453260728 LastWrite:1453260742 NumReads:2 NumWrites:2 
 Tue Jan 19 22:32:25 2016 --- cache hit
 Tue Jan 19 22:32:25 2016 --- size:150588 read/time:0/0 write/time:0/0 priority:150588
 Tue Jan 19 22:32:25 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Wed Jan 20 18:42:55 2016 --- write
+Wed Jan 20 18:42:55 2016 --- /home/timstamler/harddrivecache/mnt/hd/afile
+Wed Jan 20 18:42:55 2016 --- adding to cache
+Wed Jan 20 18:42:55 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Jan 20 18:42:55 2016 --- searching
+Wed Jan 20 18:42:55 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Jan 20 18:42:58 2016 --- read
+Wed Jan 20 18:42:58 2016 --- searching
+Path:/afile LastRead:1453333375 LastWrite:1453333375 NumReads:1 NumWrites:1 Size:16, Priority:160000
+Wed Jan 20 18:42:58 2016 --- cache hit
+Wed Jan 20 18:42:58 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Jan 20 18:42:58 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Jan 20 18:43:00 2016 --- read
+Wed Jan 20 18:43:00 2016 --- searching
+Path:/afile LastRead:1453333378 LastWrite:1453333375 NumReads:2 NumWrites:1 Size:16, Priority:160000
+Wed Jan 20 18:43:00 2016 --- cache hit
+Wed Jan 20 18:43:00 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Jan 20 18:43:00 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Jan 20 18:43:00 2016 --- read
+Wed Jan 20 18:43:00 2016 --- searching
+Path:/afile LastRead:1453333380 LastWrite:1453333375 NumReads:3 NumWrites:1 Size:16, Priority:160000
+Wed Jan 20 18:43:00 2016 --- cache hit
+Wed Jan 20 18:43:00 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Jan 20 18:43:00 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Jan 20 18:43:00 2016 --- read
+Wed Jan 20 18:43:00 2016 --- searching
+Path:/afile LastRead:1453333380 LastWrite:1453333375 NumReads:4 NumWrites:1 Size:16, Priority:160000
+Wed Jan 20 18:43:00 2016 --- cache hit
+Wed Jan 20 18:43:00 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Jan 20 18:43:00 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Jan 20 18:43:01 2016 --- read
+Wed Jan 20 18:43:01 2016 --- searching
+Path:/afile LastRead:1453333380 LastWrite:1453333375 NumReads:5 NumWrites:1 Size:16, Priority:160000
+Wed Jan 20 18:43:01 2016 --- cache hit
+Wed Jan 20 18:43:01 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Jan 20 18:43:01 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Jan 20 18:43:01 2016 --- read
+Wed Jan 20 18:43:01 2016 --- searching
+Path:/afile LastRead:1453333381 LastWrite:1453333375 NumReads:6 NumWrites:1 Size:16, Priority:160000
+Wed Jan 20 18:43:01 2016 --- cache hit
+Wed Jan 20 18:43:01 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Jan 20 18:43:01 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Jan 20 18:43:01 2016 --- read
+Wed Jan 20 18:43:01 2016 --- searching
+Path:/afile LastRead:1453333381 LastWrite:1453333375 NumReads:7 NumWrites:1 Size:16, Priority:160000
+Wed Jan 20 18:43:01 2016 --- cache hit
+Wed Jan 20 18:43:01 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Jan 20 18:43:01 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Jan 20 18:43:01 2016 --- read
+Wed Jan 20 18:43:01 2016 --- searching
+Path:/afile LastRead:1453333381 LastWrite:1453333375 NumReads:8 NumWrites:1 Size:16, Priority:160000
+Wed Jan 20 18:43:01 2016 --- cache hit
+Wed Jan 20 18:43:01 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Jan 20 18:43:01 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Jan 20 18:43:02 2016 --- read
+Wed Jan 20 18:43:02 2016 --- searching
+Path:/afile LastRead:1453333381 LastWrite:1453333375 NumReads:9 NumWrites:1 Size:16, Priority:160000
+Wed Jan 20 18:43:02 2016 --- cache hit
+Wed Jan 20 18:43:02 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Jan 20 18:43:02 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Jan 20 18:43:02 2016 --- read
+Wed Jan 20 18:43:02 2016 --- searching
+Path:/afile LastRead:1453333382 LastWrite:1453333375 NumReads:10 NumWrites:1 Size:16, Priority:160000
+Wed Jan 20 18:43:02 2016 --- cache hit
+Wed Jan 20 18:43:02 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Jan 20 18:43:02 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Feb  3 18:04:47 2016 --- read
+Wed Feb  3 18:04:47 2016 --- searching
+Wed Feb  3 18:04:47 2016 --- cache miss
+Wed Feb  3 18:04:47 2016 --- /home/timstamler/harddrivecache/mnt/hd/afile
+Wed Feb  3 18:04:47 2016 --- adding to cache
+Wed Feb  3 18:04:47 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Feb  3 18:04:47 2016 --- searching
+Wed Feb  3 18:04:47 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Feb  3 18:05:13 2016 --- write
+Wed Feb  3 18:05:13 2016 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
+Wed Feb  3 18:05:13 2016 --- adding to cache
+Wed Feb  3 18:05:13 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Wed Feb  3 18:05:13 2016 --- searching
+Wed Feb  3 18:05:13 2016 --- size:102400 read/time:0/0 write/time:0/0 priority:102400
+Wed Feb  3 18:05:21 2016 --- read
+Wed Feb  3 18:05:21 2016 --- searching
+Path:/afile LastRead:1454540687 LastWrite:1454540687 NumReads:1 NumWrites:1 Size:16, Priority:160000
+Path:/hello.txt LastRead:1454540713 LastWrite:1454540713 NumReads:1 NumWrites:1 Size:25, Priority:102400
+Wed Feb  3 18:05:21 2016 --- cache hit
+Wed Feb  3 18:05:21 2016 --- size:102400 read/time:0/0 write/time:0/0 priority:102400
+Wed Feb  3 18:05:21 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Wed Feb  3 18:05:23 2016 --- read
+Wed Feb  3 18:05:23 2016 --- searching
+Path:/afile LastRead:1454540687 LastWrite:1454540687 NumReads:1 NumWrites:1 Size:16, Priority:160000
+Path:/hello.txt LastRead:1454540721 LastWrite:1454540713 NumReads:2 NumWrites:1 Size:25, Priority:102400
+Wed Feb  3 18:05:23 2016 --- cache hit
+Wed Feb  3 18:05:23 2016 --- size:102400 read/time:0/0 write/time:0/0 priority:102400
+Wed Feb  3 18:05:23 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Wed Feb  3 18:05:23 2016 --- read
+Wed Feb  3 18:05:23 2016 --- searching
+Path:/afile LastRead:1454540687 LastWrite:1454540687 NumReads:1 NumWrites:1 Size:16, Priority:160000
+Path:/hello.txt LastRead:1454540723 LastWrite:1454540713 NumReads:3 NumWrites:1 Size:25, Priority:102400
+Wed Feb  3 18:05:23 2016 --- cache hit
+Wed Feb  3 18:05:23 2016 --- size:102400 read/time:0/0 write/time:0/0 priority:102400
+Wed Feb  3 18:05:23 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Wed Feb  3 19:11:15 2016 --- read
+Wed Feb  3 19:11:15 2016 --- searching
+Path:/afile LastRead:1454540687 LastWrite:1454540687 NumReads:1 NumWrites:1 Size:16, Priority:160000
+Path:/hello.txt LastRead:1454540723 LastWrite:1454540713 NumReads:4 NumWrites:1 Size:25, Priority:102400
+Wed Feb  3 19:11:15 2016 --- cache miss
+Wed Feb  3 19:11:15 2016 --- /home/timstamler/harddrivecache/mnt/hd/afile
+Wed Feb  3 19:11:15 2016 --- adding to cache
+Wed Feb  3 19:11:15 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
+Wed Feb  3 19:11:15 2016 --- searching
+Wed Feb  3 19:11:15 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
+Wed Feb  3 19:11:39 2016 --- write
+Wed Feb  3 19:11:39 2016 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
+Wed Feb  3 19:11:39 2016 --- adding to cache
+Wed Feb  3 19:11:39 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Wed Feb  3 19:11:39 2016 --- searching
+Wed Feb  3 19:11:39 2016 --- size:82580 read/time:0/0 write/time:0/0 priority:82580
+Wed Feb  3 19:11:47 2016 --- read
+Wed Feb  3 19:11:47 2016 --- searching
+Path:/afile LastRead:1454540687 LastWrite:1454540687 NumReads:1 NumWrites:1 Size:16, Priority:160000
+Path:/hello.txt LastRead:1454540723 LastWrite:1454540713 NumReads:4 NumWrites:1 Size:31, Priority:82580
+Wed Feb  3 19:11:47 2016 --- cache hit
+Wed Feb  3 19:11:47 2016 --- size:82580 read/time:0/0 write/time:0/0 priority:82580
+Wed Feb  3 19:11:47 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
