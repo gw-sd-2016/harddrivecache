@@ -1,6 +1,6 @@
-OBJS=hdc_fs.o cache.o hash.o list.o heap.o 
+OBJS=hdc_fs.o cache.o hash.o list.o heap.o sqlite3.o 
 CFLAGS=-O3 -I. -w
-LIBS=-pthread
+LIBS=-lpthread -ldl
 CC=gcc
 BIN=hdc_fs
 FUSE=`pkg-config fuse --cflags --libs`
