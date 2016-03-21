@@ -12,7 +12,8 @@
 #include <disk_info.h>
 #include <log.h>
 
-#define MAX_CACHE 256000
+#define MAX_CACHE 128000000000
+#define BUF_SIZE 4096
 
 #define SIZE_BIAS 10
 #define READ_BIAS 10
@@ -40,21 +41,32 @@ int pow(int b, int e){
 int cache_exists(const char* path){
 	struct file_stat* file = table_search(cache_table, path);
 	char * new_path = get_ssd_path(path);
-	table_print(cache_table);
 	if(access( new_path, R_OK ) != -1){
 		log_msg("cache hit");
 		if(!file){
-			file = file_stat_create(path, 0, 0, 0, 0, 0);
+			file = file_stat_create(path, (int) time(0), 0, 0, 0, 0);
 			get_data(file);
+			
+			struct stat st;
+			stat(new_path, &st);
+			file->size = st.st_size;
+
+			char print[256];
+    		sprintf(print, "size: %d read/time:%d/%d", file->size, file->numreads, file->lastread);
+    		log_msg(print);	
+
 			current_size += file->size;
             table_add(&cache_table, file);
 			heap_insert(priority_heap, file);
+			log_msg("inserted into ds");
 		}
 		file->numreads++;
 		int diff = file->lastread - (int) time(0);
 		file->freq_hist[time_to_index(diff)]++;
 		file->lastread = (int) time(0);
+		log_msg("generating priority");
 		gen_priority(file);
+		log_msg("updating db");
 		update_data(file);
 
         while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
@@ -87,6 +99,7 @@ void make_dirs(const char* path){
 int cache_add(const char* path){
 	char* hd_path = get_hd_path(path);
 	char* ssd_path = get_ssd_path(path);
+	//char buf[BUF_SIZE];
 	char ch;
 
 	log_msg("adding to cache");
@@ -125,13 +138,31 @@ int cache_add(const char* path){
 	else{
 		file->size = st.st_size;
 		update_data(file);
+	}	
+	current_size += file->size;
+    
+	if(current_size > MAX_CACHE)
+	{
+		if(strcmp(priority_heap->elements[0]->path, path)==0){
+			heap_delete(priority_heap, 0);
+			table_rem(cache_table, path);
+			goto done;
+		}
+		else{
+			while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
+		}
 	}
 
-	current_size += file->size;
-    while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
-
+	/*int numRead;
+	while((numRead = read(hd_file, buf, BUF_SIZE)) > 0)
+	{
+		log_msg("writing to ssd");
+		if(write(ssd_file, buf, numRead) != numRead)
+			log_msg("really bad copying error");	
+	}*/	
 	while((ch = fgetc(hd_file))!=EOF) fputc(ch, ssd_file);
 	
+done:
 	fclose(hd_file);
 	fclose(ssd_file);
 	free(hd_path);
@@ -141,18 +172,15 @@ int cache_add(const char* path){
 int cache_remove(const char* path){
 	char* ssd_path = get_ssd_path(path);
 	int ret = unlink(ssd_path);
-	if(!ret){
-		char* data_path = get_data_path(path);
-		unlink(data_path);
-		free(data_path);
-	}
 	free(ssd_path);	
 	struct file_stat* file = table_rem(cache_table, path);
     if(file) current_size -= file->size;
 	return ret;
 }
 void gen_priority(struct file_stat* file){
-    int size = SIZE_BIAS * MAX_CACHE / file->size;
+    int size;
+	if(file->size > 0) size = SIZE_BIAS * MAX_CACHE / file->size;
+	else size = 0;
     int curr_time = (int) time(0);
     int read_time = (curr_time-file->lastread)/(60000*TIME_BIAS);
     int write_time = (curr_time-file->lastwrite)/(60000*TIME_BIAS);
@@ -168,7 +196,8 @@ void gen_priority(struct file_stat* file){
 
 	if(file->size > MAX_CACHE) file->p = 0;
     else file->p = priority;
-       
+      
+	log_msg("fixing heap"); 
 	heap_delete(priority_heap, file->heap_pos);
     heap_insert(priority_heap, file);
 
@@ -177,11 +206,12 @@ void gen_priority(struct file_stat* file){
     log_msg(print);
 }
 
-void callback(struct file_stat* file, int num_col, char** results, char** col_names){
+int callback(struct file_stat* file, int num_col, char** results, char** col_names){
 	file->lastread = atoi(results[1]);
 	file->lastwrite = atoi(results[2]);
 	file->numreads = atoi(results[3]);
 	file->numwrites = atoi(results[4]);
+	return 0;
 }
 int get_data(struct file_stat* file){
 	sqlite3 *db;
@@ -241,7 +271,7 @@ int insert_data(struct file_stat* file){
 
 	int ret = sqlite3_open(DB_PATH, &db);
 
-	sprintf(sql, "insert into file_stats values (%s, %d, %d, %d, %d);", 
+	sprintf(sql, "insert into file_stats values ('%s', %d, %d, %d, %d);", 
 		file->path, file->lastread, file->lastwrite, file->numreads, file->numwrites);
 
 	if(ret){

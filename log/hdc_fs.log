@@ -1,349 +1,84 @@
-Tue Dec 15 13:30:34 2015 --- write
-Tue Dec 15 13:30:34 2015 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
-Tue Dec 15 13:30:34 2015 --- adding to cache
-Tue Dec 15 13:30:34 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Tue Dec 15 13:30:34 2015 --- searching
-Tue Dec 15 13:30:55 2015 --- read
-Tue Dec 15 13:30:55 2015 --- searching
-Path:/hello.txt LastRead:1450204234 LastWrite:1450204234 NumReads:1 NumWrites:1 Size:6
-Tue Dec 15 13:30:55 2015 --- cache hit
-Tue Dec 15 13:30:55 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Tue Dec 15 13:30:56 2015 --- read
-Tue Dec 15 13:30:56 2015 --- searching
-Path:/hello.txt LastRead:1450204255 LastWrite:1450204234 NumReads:2 NumWrites:1 Size:6
-Tue Dec 15 13:30:56 2015 --- cache hit
-Tue Dec 15 13:30:56 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Tue Dec 15 13:30:57 2015 --- read
-Tue Dec 15 13:30:57 2015 --- searching
-Path:/hello.txt LastRead:1450204256 LastWrite:1450204234 NumReads:3 NumWrites:1 Size:6
-Tue Dec 15 13:30:57 2015 --- cache hit
-Tue Dec 15 13:30:57 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Tue Dec 15 13:30:57 2015 --- read
-Tue Dec 15 13:30:57 2015 --- searching
-Path:/hello.txt LastRead:1450204257 LastWrite:1450204234 NumReads:4 NumWrites:1 Size:6
-Tue Dec 15 13:30:57 2015 --- cache hit
-Tue Dec 15 13:30:57 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Tue Dec 15 13:30:57 2015 --- read
-Tue Dec 15 13:30:57 2015 --- searching
-Path:/hello.txt LastRead:1450204257 LastWrite:1450204234 NumReads:5 NumWrites:1 Size:6
-Tue Dec 15 13:30:57 2015 --- cache hit
-Tue Dec 15 13:30:57 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Tue Dec 15 13:30:58 2015 --- read
-Tue Dec 15 13:30:58 2015 --- searching
-Path:/hello.txt LastRead:1450204257 LastWrite:1450204234 NumReads:6 NumWrites:1 Size:6
-Tue Dec 15 13:30:58 2015 --- cache hit
-Tue Dec 15 13:30:58 2015 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Tue Jan 19 22:22:57 2016 --- read
-Tue Jan 19 22:22:57 2016 --- searching
-Tue Jan 19 22:22:57 2016 --- cache miss
-Tue Jan 19 22:22:57 2016 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
-Tue Jan 19 22:22:57 2016 --- adding to cache
-Tue Jan 19 22:22:57 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Tue Jan 19 22:22:57 2016 --- searching
-Tue Jan 19 22:23:06 2016 --- read
-Tue Jan 19 22:23:06 2016 --- searching
-Path:/hello.txt LastRead:1453260177 LastWrite:1453260177 NumReads:1 NumWrites:1 Size:6, Priority:0
-Tue Jan 19 22:23:06 2016 --- cache miss
-Tue Jan 19 22:23:06 2016 --- /home/timstamler/harddrivecache/mnt/hd/random_dir/hello_again.txt
-Tue Jan 19 22:23:06 2016 --- adding to cache
-Tue Jan 19 22:23:06 2016 --- /home/timstamler/harddrivecache/mnt/ssd/random_dir/hello_again.txt
-Tue Jan 19 22:23:06 2016 --- searching
-Tue Jan 19 22:23:06 2016 --- /home/timstamler/harddrivecache/mnt/ssd/random_dir
-Tue Jan 19 22:32:08 2016 --- read
-Tue Jan 19 22:32:08 2016 --- searching
-Tue Jan 19 22:32:08 2016 --- cache hit
-Tue Jan 19 22:32:08 2016 --- size:426666 read/time:0/0 write/time:0/0 priority:426666
-Tue Jan 19 22:32:08 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Tue Jan 19 22:32:22 2016 --- write
-Tue Jan 19 22:32:22 2016 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
-Tue Jan 19 22:32:22 2016 --- adding to cache
-Tue Jan 19 22:32:22 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Tue Jan 19 22:32:22 2016 --- searching
-Tue Jan 19 22:32:22 2016 --- size:150588 read/time:0/0 write/time:0/0 priority:150588
-Tue Jan 19 22:32:25 2016 --- read
-Tue Jan 19 22:32:25 2016 --- searching
-Path:/hello.txt LastRead:1453260728 LastWrite:1453260742 NumReads:2 NumWrites:2 Size:17, Priority:150588
-Tue Jan 19 22:32:25 2016 --- cache hit
-Tue Jan 19 22:32:25 2016 --- size:150588 read/time:0/0 write/time:0/0 priority:150588
-Tue Jan 19 22:32:25 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Wed Jan 20 18:42:55 2016 --- write
-Wed Jan 20 18:42:55 2016 --- /home/timstamler/harddrivecache/mnt/hd/afile
-Wed Jan 20 18:42:55 2016 --- adding to cache
-Wed Jan 20 18:42:55 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Jan 20 18:42:55 2016 --- searching
-Wed Jan 20 18:42:55 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Jan 20 18:42:58 2016 --- read
-Wed Jan 20 18:42:58 2016 --- searching
-Path:/afile LastRead:1453333375 LastWrite:1453333375 NumReads:1 NumWrites:1 Size:16, Priority:160000
-Wed Jan 20 18:42:58 2016 --- cache hit
-Wed Jan 20 18:42:58 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Jan 20 18:42:58 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Jan 20 18:43:00 2016 --- read
-Wed Jan 20 18:43:00 2016 --- searching
-Path:/afile LastRead:1453333378 LastWrite:1453333375 NumReads:2 NumWrites:1 Size:16, Priority:160000
-Wed Jan 20 18:43:00 2016 --- cache hit
-Wed Jan 20 18:43:00 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Jan 20 18:43:00 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Jan 20 18:43:00 2016 --- read
-Wed Jan 20 18:43:00 2016 --- searching
-Path:/afile LastRead:1453333380 LastWrite:1453333375 NumReads:3 NumWrites:1 Size:16, Priority:160000
-Wed Jan 20 18:43:00 2016 --- cache hit
-Wed Jan 20 18:43:00 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Jan 20 18:43:00 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Jan 20 18:43:00 2016 --- read
-Wed Jan 20 18:43:00 2016 --- searching
-Path:/afile LastRead:1453333380 LastWrite:1453333375 NumReads:4 NumWrites:1 Size:16, Priority:160000
-Wed Jan 20 18:43:00 2016 --- cache hit
-Wed Jan 20 18:43:00 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Jan 20 18:43:00 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Jan 20 18:43:01 2016 --- read
-Wed Jan 20 18:43:01 2016 --- searching
-Path:/afile LastRead:1453333380 LastWrite:1453333375 NumReads:5 NumWrites:1 Size:16, Priority:160000
-Wed Jan 20 18:43:01 2016 --- cache hit
-Wed Jan 20 18:43:01 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Jan 20 18:43:01 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Jan 20 18:43:01 2016 --- read
-Wed Jan 20 18:43:01 2016 --- searching
-Path:/afile LastRead:1453333381 LastWrite:1453333375 NumReads:6 NumWrites:1 Size:16, Priority:160000
-Wed Jan 20 18:43:01 2016 --- cache hit
-Wed Jan 20 18:43:01 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Jan 20 18:43:01 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Jan 20 18:43:01 2016 --- read
-Wed Jan 20 18:43:01 2016 --- searching
-Path:/afile LastRead:1453333381 LastWrite:1453333375 NumReads:7 NumWrites:1 Size:16, Priority:160000
-Wed Jan 20 18:43:01 2016 --- cache hit
-Wed Jan 20 18:43:01 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Jan 20 18:43:01 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Jan 20 18:43:01 2016 --- read
-Wed Jan 20 18:43:01 2016 --- searching
-Path:/afile LastRead:1453333381 LastWrite:1453333375 NumReads:8 NumWrites:1 Size:16, Priority:160000
-Wed Jan 20 18:43:01 2016 --- cache hit
-Wed Jan 20 18:43:01 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Jan 20 18:43:01 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Jan 20 18:43:02 2016 --- read
-Wed Jan 20 18:43:02 2016 --- searching
-Path:/afile LastRead:1453333381 LastWrite:1453333375 NumReads:9 NumWrites:1 Size:16, Priority:160000
-Wed Jan 20 18:43:02 2016 --- cache hit
-Wed Jan 20 18:43:02 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Jan 20 18:43:02 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Jan 20 18:43:02 2016 --- read
-Wed Jan 20 18:43:02 2016 --- searching
-Path:/afile LastRead:1453333382 LastWrite:1453333375 NumReads:10 NumWrites:1 Size:16, Priority:160000
-Wed Jan 20 18:43:02 2016 --- cache hit
-Wed Jan 20 18:43:02 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Jan 20 18:43:02 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Feb  3 18:04:47 2016 --- read
-Wed Feb  3 18:04:47 2016 --- searching
-Wed Feb  3 18:04:47 2016 --- cache miss
-Wed Feb  3 18:04:47 2016 --- /home/timstamler/harddrivecache/mnt/hd/afile
-Wed Feb  3 18:04:47 2016 --- adding to cache
-Wed Feb  3 18:04:47 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Feb  3 18:04:47 2016 --- searching
-Wed Feb  3 18:04:47 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Feb  3 18:05:13 2016 --- write
-Wed Feb  3 18:05:13 2016 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
-Wed Feb  3 18:05:13 2016 --- adding to cache
-Wed Feb  3 18:05:13 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Wed Feb  3 18:05:13 2016 --- searching
-Wed Feb  3 18:05:13 2016 --- size:102400 read/time:0/0 write/time:0/0 priority:102400
-Wed Feb  3 18:05:21 2016 --- read
-Wed Feb  3 18:05:21 2016 --- searching
-Path:/afile LastRead:1454540687 LastWrite:1454540687 NumReads:1 NumWrites:1 Size:16, Priority:160000
-Path:/hello.txt LastRead:1454540713 LastWrite:1454540713 NumReads:1 NumWrites:1 Size:25, Priority:102400
-Wed Feb  3 18:05:21 2016 --- cache hit
-Wed Feb  3 18:05:21 2016 --- size:102400 read/time:0/0 write/time:0/0 priority:102400
-Wed Feb  3 18:05:21 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Wed Feb  3 18:05:23 2016 --- read
-Wed Feb  3 18:05:23 2016 --- searching
-Path:/afile LastRead:1454540687 LastWrite:1454540687 NumReads:1 NumWrites:1 Size:16, Priority:160000
-Path:/hello.txt LastRead:1454540721 LastWrite:1454540713 NumReads:2 NumWrites:1 Size:25, Priority:102400
-Wed Feb  3 18:05:23 2016 --- cache hit
-Wed Feb  3 18:05:23 2016 --- size:102400 read/time:0/0 write/time:0/0 priority:102400
-Wed Feb  3 18:05:23 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Wed Feb  3 18:05:23 2016 --- read
-Wed Feb  3 18:05:23 2016 --- searching
-Path:/afile LastRead:1454540687 LastWrite:1454540687 NumReads:1 NumWrites:1 Size:16, Priority:160000
-Path:/hello.txt LastRead:1454540723 LastWrite:1454540713 NumReads:3 NumWrites:1 Size:25, Priority:102400
-Wed Feb  3 18:05:23 2016 --- cache hit
-Wed Feb  3 18:05:23 2016 --- size:102400 read/time:0/0 write/time:0/0 priority:102400
-Wed Feb  3 18:05:23 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Wed Feb  3 19:11:15 2016 --- read
-Wed Feb  3 19:11:15 2016 --- searching
-Path:/afile LastRead:1454540687 LastWrite:1454540687 NumReads:1 NumWrites:1 Size:16, Priority:160000
-Path:/hello.txt LastRead:1454540723 LastWrite:1454540713 NumReads:4 NumWrites:1 Size:25, Priority:102400
-Wed Feb  3 19:11:15 2016 --- cache miss
-Wed Feb  3 19:11:15 2016 --- /home/timstamler/harddrivecache/mnt/hd/afile
-Wed Feb  3 19:11:15 2016 --- adding to cache
-Wed Feb  3 19:11:15 2016 --- /home/timstamler/harddrivecache/mnt/ssd/afile
-Wed Feb  3 19:11:15 2016 --- searching
-Wed Feb  3 19:11:15 2016 --- size:160000 read/time:0/0 write/time:0/0 priority:160000
-Wed Feb  3 19:11:39 2016 --- write
-Wed Feb  3 19:11:39 2016 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
-Wed Feb  3 19:11:39 2016 --- adding to cache
-Wed Feb  3 19:11:39 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Wed Feb  3 19:11:39 2016 --- searching
-Wed Feb  3 19:11:39 2016 --- size:82580 read/time:0/0 write/time:0/0 priority:82580
-Wed Feb  3 19:11:47 2016 --- read
-Wed Feb  3 19:11:47 2016 --- searching
-Path:/afile LastRead:1454540687 LastWrite:1454540687 NumReads:1 NumWrites:1 Size:16, Priority:160000
-Path:/hello.txt LastRead:1454540723 LastWrite:1454540713 NumReads:4 NumWrites:1 Size:31, Priority:82580
-Wed Feb  3 19:11:47 2016 --- cache hit
-Wed Feb  3 19:11:47 2016 --- size:82580 read/time:0/0 write/time:0/0 priority:82580
-Wed Feb  3 19:11:47 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Sat Mar 19 16:43:01 2016 --- write
-Sat Mar 19 16:43:01 2016 --- /home/timstamler/harddrivecache/mnt/hd/anewfile.txt
-Sat Mar 19 16:43:01 2016 --- adding to cache
-Sat Mar 19 16:43:01 2016 --- /home/timstamler/harddrivecache/mnt/ssd/anewfile.txt
-Sat Mar 19 16:43:01 2016 --- searching
-Sat Mar 19 16:43:01 2016 --- size:426666 read/time:0/0 write/time:0/0 priority:426666
-Sat Mar 19 16:43:01 2016 --- SQL error
-
-Sat Mar 19 16:43:01 2016 --- near "/": syntax error
-Sun Mar 20 20:19:58 2016 --- searching
-Sun Mar 20 20:19:58 2016 --- cache hit
-Sun Mar 20 20:22:57 2016 --- searching
-Sun Mar 20 20:22:57 2016 --- cache miss
-Sun Mar 20 20:22:57 2016 --- searching
-Sun Mar 20 20:22:57 2016 --- cache miss
-Sun Mar 20 20:22:57 2016 --- searching
-Sun Mar 20 20:22:57 2016 --- cache hit
-Sun Mar 20 20:31:26 2016 --- searching
-Sun Mar 20 20:31:26 2016 --- cache miss
-Sun Mar 20 20:31:26 2016 --- searching
-Sun Mar 20 20:31:26 2016 --- cache hit
-Sun Mar 20 20:32:31 2016 --- write
-Sun Mar 20 20:32:31 2016 --- /home/timstamler/harddrivecache/mnt/hd/nothing
-Sun Mar 20 20:32:31 2016 --- adding to cache
-Sun Mar 20 20:32:31 2016 --- /home/timstamler/harddrivecache/mnt/ssd/nothing
-Sun Mar 20 20:32:31 2016 --- searching
-Sun Mar 20 20:32:31 2016 --- size:1280000 read/time:0/0 write/time:0/0 priority:1280000
-Sun Mar 20 20:32:31 2016 --- SQL error
-
-Sun Mar 20 20:32:31 2016 --- near "/": syntax error
-Sun Mar 20 20:32:36 2016 --- write
-Sun Mar 20 20:32:36 2016 --- /home/timstamler/harddrivecache/mnt/hd/nothing2
-Sun Mar 20 20:32:36 2016 --- adding to cache
-Sun Mar 20 20:32:36 2016 --- /home/timstamler/harddrivecache/mnt/ssd/nothing2
-Sun Mar 20 20:32:36 2016 --- searching
-Sun Mar 20 20:32:36 2016 --- size:1280000 read/time:0/0 write/time:0/0 priority:1280000
-Sun Mar 20 20:32:36 2016 --- SQL error
-
-Sun Mar 20 20:32:36 2016 --- near "/": syntax error
-Sun Mar 20 20:32:38 2016 --- read
-Sun Mar 20 20:32:38 2016 --- searching
-Path:/nothing2 LastRead:1458520356 LastWrite:1458520356 NumReads:1 NumWrites:1 Size:2, Priority:1280000
-Path:/nothing LastRead:1458520351 LastWrite:1458520351 NumReads:1 NumWrites:1 Size:2, Priority:1280000
-Sun Mar 20 20:32:38 2016 --- cache hit
-Sun Mar 20 20:32:38 2016 --- size:1280000 read/time:0/0 write/time:0/0 priority:1280000
-Sun Mar 20 20:32:38 2016 --- /home/timstamler/harddrivecache/mnt/ssd/nothing
-Sun Mar 20 20:32:42 2016 --- read
-Sun Mar 20 20:32:42 2016 --- searching
-Path:/nothing2 LastRead:1458520356 LastWrite:1458520356 NumReads:1 NumWrites:1 Size:2, Priority:1280000
-Path:/nothing LastRead:1458520358 LastWrite:1458520351 NumReads:2 NumWrites:1 Size:2, Priority:1280000
-Sun Mar 20 20:32:42 2016 --- cache hit
-Sun Mar 20 20:32:42 2016 --- size:1280000 read/time:0/0 write/time:0/0 priority:1280000
-Sun Mar 20 20:32:42 2016 --- /home/timstamler/harddrivecache/mnt/ssd/nothing2
-Sun Mar 20 20:33:21 2016 --- searching
-Path:/nothing2 LastRead:1458520362 LastWrite:1458520356 NumReads:2 NumWrites:1 Size:2, Priority:1280000
-Path:/nothing LastRead:1458520358 LastWrite:1458520351 NumReads:2 NumWrites:1 Size:2, Priority:1280000
-Sun Mar 20 20:33:21 2016 --- cache miss
-Sun Mar 20 20:33:21 2016 --- searching
-Path:/nothing2 LastRead:1458520362 LastWrite:1458520356 NumReads:2 NumWrites:1 Size:2, Priority:1280000
-Path:/nothing LastRead:1458520358 LastWrite:1458520351 NumReads:2 NumWrites:1 Size:2, Priority:1280000
-Sun Mar 20 20:33:21 2016 --- cache hit
-Mon Mar 21 11:27:45 2016 --- write
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/hd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- adding to cache
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- searching
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001
-Mon Mar 21 11:27:45 2016 --- size:625 read/time:0/0 write/time:0/0 priority:625
-Mon Mar 21 11:27:45 2016 --- SQL error
-
-Mon Mar 21 11:27:45 2016 --- near "/": syntax error
-Mon Mar 21 11:27:45 2016 --- write
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/hd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- adding to cache
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- searching
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001
-Mon Mar 21 11:27:45 2016 --- write
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/hd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- adding to cache
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- searching
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001
-Mon Mar 21 11:27:45 2016 --- write
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/hd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- adding to cache
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- searching
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001
-Mon Mar 21 11:27:45 2016 --- write
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/hd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- adding to cache
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- searching
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001
-Mon Mar 21 11:27:45 2016 --- write
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/hd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- adding to cache
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- searching
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001
-Mon Mar 21 11:27:45 2016 --- write
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/hd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- adding to cache
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- searching
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001
-Mon Mar 21 11:27:45 2016 --- write
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/hd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- adding to cache
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- searching
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001
-Mon Mar 21 11:27:45 2016 --- write
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/hd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- adding to cache
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- searching
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001
-Mon Mar 21 11:27:45 2016 --- write
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/hd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- adding to cache
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- searching
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001
-Mon Mar 21 11:27:45 2016 --- write
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/hd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- adding to cache
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001/00000001
-Mon Mar 21 11:27:45 2016 --- searching
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1
-Mon Mar 21 11:27:45 2016 --- /home/timstamler/harddrivecache/mnt/ssd/largefile1/00000001
-Mon Mar 21 12:54:12 2016 --- read
-Mon Mar 21 12:54:12 2016 --- searching
-Mon Mar 21 12:54:12 2016 --- cache miss
-Mon Mar 21 12:54:12 2016 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
-Mon Mar 21 12:54:12 2016 --- adding to cache
-Mon Mar 21 12:54:12 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
-Mon Mar 21 12:54:12 2016 --- searching
-Mon Mar 21 12:54:12 2016 --- size:82580 read/time:0/0 write/time:0/0 priority:82580
-Mon Mar 21 12:54:12 2016 --- SQL error
-
-Mon Mar 21 12:54:12 2016 --- near "/": syntax error
-Mon Mar 21 12:56:25 2016 --- searching
-Mon Mar 21 12:56:25 2016 --- cache miss
-Mon Mar 21 12:56:25 2016 --- searching
-Mon Mar 21 12:56:25 2016 --- cache hit
+Mon Mar 21 18:53:37 2016 --- read
+Mon Mar 21 18:53:37 2016 --- searching
+Mon Mar 21 18:53:37 2016 --- cache hit
+Mon Mar 21 18:53:37 2016 --- size: 0 read/time:2/1458598971
+Mon Mar 21 18:53:37 2016 --- inserted into ds
+Mon Mar 21 18:53:37 2016 --- generating priority
+Mon Mar 21 18:56:50 2016 --- read
+Mon Mar 21 18:56:50 2016 --- searching
+Mon Mar 21 18:56:50 2016 --- cache hit
+Mon Mar 21 18:56:50 2016 --- size: 0 read/time:2/1458598971
+Mon Mar 21 18:56:50 2016 --- inserted into ds
+Mon Mar 21 18:56:50 2016 --- generating priority
+Mon Mar 21 18:56:50 2016 --- fixing heap
+Mon Mar 21 18:56:50 2016 --- size:0 read/time:0/0 write/time:0/0 priority:100000
+Mon Mar 21 18:56:50 2016 --- updating db
+Mon Mar 21 18:56:50 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Mon Mar 21 18:56:53 2016 --- read
+Mon Mar 21 18:56:53 2016 --- searching
+Mon Mar 21 18:56:53 2016 --- cache miss
+Mon Mar 21 18:56:53 2016 --- /home/timstamler/harddrivecache/mnt/hd/nothing
+Mon Mar 21 18:56:53 2016 --- adding to cache
+Mon Mar 21 18:56:53 2016 --- /home/timstamler/harddrivecache/mnt/ssd/nothing
+Mon Mar 21 18:56:53 2016 --- searching
+Mon Mar 21 18:56:53 2016 --- fixing heap
+Mon Mar 21 18:56:53 2016 --- size:49872896 read/time:0/0 write/time:0/0 priority:49872896
+Mon Mar 21 18:56:53 2016 --- about to write
+Mon Mar 21 18:56:55 2016 --- read
+Mon Mar 21 18:56:55 2016 --- searching
+Mon Mar 21 18:56:55 2016 --- cache hit
+Mon Mar 21 18:56:55 2016 --- generating priority
+Mon Mar 21 18:56:55 2016 --- fixing heap
+Mon Mar 21 18:56:55 2016 --- size:49872896 read/time:0/0 write/time:0/0 priority:49972896
+Mon Mar 21 18:56:55 2016 --- updating db
+Mon Mar 21 18:56:55 2016 --- /home/timstamler/harddrivecache/mnt/ssd/nothing
+Mon Mar 21 19:05:05 2016 --- read
+Mon Mar 21 19:05:05 2016 --- searching
+Mon Mar 21 19:05:05 2016 --- cache hit
+Mon Mar 21 19:05:05 2016 --- size: 0 read/time:3/1458601010
+Mon Mar 21 19:05:05 2016 --- inserted into ds
+Mon Mar 21 19:05:05 2016 --- generating priority
+Mon Mar 21 19:05:05 2016 --- fixing heap
+Mon Mar 21 19:05:05 2016 --- size:0 read/time:0/0 write/time:0/0 priority:100000
+Mon Mar 21 19:05:05 2016 --- updating db
+Mon Mar 21 19:05:05 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Mon Mar 21 19:05:20 2016 --- read
+Mon Mar 21 19:05:20 2016 --- searching
+Mon Mar 21 19:05:20 2016 --- cache miss
+Mon Mar 21 19:05:20 2016 --- /home/timstamler/harddrivecache/mnt/hd/hello.txt
+Mon Mar 21 19:05:20 2016 --- adding to cache
+Mon Mar 21 19:05:20 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Mon Mar 21 19:05:20 2016 --- searching
+Mon Mar 21 19:05:21 2016 --- read
+Mon Mar 21 19:05:21 2016 --- searching
+Mon Mar 21 19:05:21 2016 --- cache hit
+Mon Mar 21 19:05:21 2016 --- generating priority
+Mon Mar 21 19:05:21 2016 --- fixing heap
+Mon Mar 21 19:05:21 2016 --- size:-1659350380 read/time:0/0 write/time:0/0 priority:-1659150380
+Mon Mar 21 19:05:21 2016 --- updating db
+Mon Mar 21 19:05:21 2016 --- /home/timstamler/harddrivecache/mnt/ssd/hello.txt
+Mon Mar 21 19:05:37 2016 --- read
+Mon Mar 21 19:05:37 2016 --- searching
+Mon Mar 21 19:05:37 2016 --- cache miss
+Mon Mar 21 19:05:37 2016 --- /home/timstamler/harddrivecache/mnt/hd/nothing
+Mon Mar 21 19:05:37 2016 --- adding to cache
+Mon Mar 21 19:05:37 2016 --- /home/timstamler/harddrivecache/mnt/ssd/nothing
+Mon Mar 21 19:05:37 2016 --- searching
+Mon Mar 21 19:05:37 2016 --- fixing heap
+Mon Mar 21 19:05:37 2016 --- size:49872896 read/time:0/0 write/time:0/0 priority:49872896
+Mon Mar 21 19:05:55 2016 --- read
+Mon Mar 21 19:05:55 2016 --- searching
+Mon Mar 21 19:05:55 2016 --- cache hit
+Mon Mar 21 19:05:55 2016 --- generating priority
+Mon Mar 21 19:05:55 2016 --- fixing heap
+Mon Mar 21 19:05:55 2016 --- size:49872896 read/time:0/0 write/time:0/0 priority:49972896
+Mon Mar 21 19:05:55 2016 --- updating db
+Mon Mar 21 19:05:56 2016 --- /home/timstamler/harddrivecache/mnt/ssd/nothing
+Mon Mar 21 19:05:56 2016 --- read
+Mon Mar 21 19:05:56 2016 --- searching
+Mon Mar 21 19:05:56 2016 --- cache hit
+Mon Mar 21 19:05:56 2016 --- generating priority
+Mon Mar 21 19:05:56 2016 --- fixing heap
+Mon Mar 21 19:05:56 2016 --- size:49872896 read/time:0/0 write/time:0/0 priority:50072896
+Mon Mar 21 19:05:56 2016 --- updating db
+Mon Mar 21 19:05:56 2016 --- /home/timstamler/harddrivecache/mnt/ssd/nothing
