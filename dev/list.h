@@ -11,7 +11,8 @@ struct linkedList{
 struct file_stat{
     char path[256];
     
-    int lastread, lastwrite;
+    int freq_hist[5];
+	int lastread, lastwrite;
     int numreads, numwrites;
     int size, p;
     int heap_pos;

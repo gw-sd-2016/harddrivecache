@@ -23,6 +23,20 @@ struct hashTable* cache_table;
 struct heap* priority_heap;
 int current_size;
 
+int time_to_index(int time){
+	if(time < 1000) return 0;
+	if(time < 10000) return 1;
+	if(time < 100000) return 2;
+	if(time < 1000000) return 3;
+	return 4;
+}
+
+int pow(int b, int e){
+	if(e == 0) return 1;
+	if(e == 1) return b;
+	return b * pow(b, e-1);
+}
+
 int cache_exists(const char* path){
 	struct file_stat* file = table_search(cache_table, path);
 	char * new_path = get_ssd_path(path);
@@ -37,6 +51,8 @@ int cache_exists(const char* path){
 			heap_insert(priority_heap, file);
 		}
 		file->numreads++;
+		int diff = file->lastread - (int) time(0);
+		file->freq_hist[time_to_index(diff)]++;
 		file->lastread = (int) time(0);
 		gen_priority(file);
 		update_data(file);
@@ -143,7 +159,12 @@ void gen_priority(struct file_stat* file){
         
     int read = file->numreads*read_time*READ_BIAS;
     int write = file->numwrites*write_time*WRITE_BIAS;
-    int priority = size + read + write;
+    int hist = 0, i = 0;
+
+	for(i = 0; i<5; i++)
+		hist += file->freq_hist[i] * pow(10, 5 - i);
+
+	int priority = size + read + write + hist;
 
 	if(file->size > MAX_CACHE) file->p = 0;
     else file->p = priority;

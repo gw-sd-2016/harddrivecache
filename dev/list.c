@@ -10,8 +10,12 @@ struct linkedList* ll_create(void){
 struct file_stat* file_stat_create(char* path, int lr, int lw, int nr, int nw, int size){
     struct file_stat* newfile = malloc(sizeof(struct file_stat));
     
+	int i;
+	for(i = 0; i<5; i++)
+		newfile->freq_hist[i] = 0;
+
     strcpy(newfile->path, path);
-    newfile->lastread = lr;
+	newfile->lastread = lr;
     newfile->lastwrite = lw;
     newfile->numreads = nr;
     newfile->numwrites = nw;
