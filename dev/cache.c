@@ -42,7 +42,7 @@ int cache_exists(const char* path){
 	struct file_stat* file = table_search(cache_table, path);
 	char * new_path = get_ssd_path(path);
 	if(access( new_path, R_OK ) != -1){
-		log_msg("cache hit");
+		//log_msg("cache hit");
 		if(!file){
 			file = file_stat_create(path, (int) time(0), 0, 0, 0, 0);
 			get_data(file);
@@ -51,22 +51,22 @@ int cache_exists(const char* path){
 			stat(new_path, &st);
 			file->size = st.st_size;
 
-			char print[256];
+			/*char print[256];
     		sprintf(print, "size: %d read/time:%d/%d", file->size, file->numreads, file->lastread);
-    		log_msg(print);	
+    		log_msg(print);*/	
 
 			current_size += file->size;
             table_add(&cache_table, file);
 			heap_insert(priority_heap, file);
-			log_msg("inserted into ds");
+			//log_msg("inserted into ds");
 		}
 		file->numreads++;
 		int diff = file->lastread - (int) time(0);
 		file->freq_hist[time_to_index(diff)]++;
 		file->lastread = (int) time(0);
-		log_msg("generating priority");
+		//log_msg("generating priority");
 		gen_priority(file);
-		log_msg("updating db");
+		//log_msg("updating db");
 		update_data(file);
 
         while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
@@ -74,7 +74,7 @@ int cache_exists(const char* path){
 		return 1;
 	}
 	else{
-		log_msg("cache miss");
+		//log_msg("cache miss");
 		free(new_path);
 		return 0;
 	}
@@ -90,7 +90,7 @@ void make_dirs(const char* path){
 		sprintf(fill_path, "%s/%s", fill_path, curr);
 		next = strtok(NULL, "/");
 		if(!next) break;
-		log_msg(fill_path);
+		//log_msg(fill_path);
 		mkdir(fill_path, S_IRWXU); 
 		curr = next;
 	}
@@ -99,11 +99,11 @@ void make_dirs(const char* path){
 int cache_add(const char* path){
 	char* hd_path = get_hd_path(path);
 	char* ssd_path = get_ssd_path(path);
-	//char buf[BUF_SIZE];
+	char buf[BUF_SIZE];
 	char ch;
 
-	log_msg("adding to cache");
-	log_msg(ssd_path);
+	//log_msg("adding to cache");
+	//log_msg(ssd_path);
 		
 	struct file_stat* file = table_search(cache_table, path);
 
@@ -153,14 +153,21 @@ int cache_add(const char* path){
 		}
 	}
 
+	pid_t pid = fork();
+
+	if(pid == 0){
+		execv("/bin/cp", (char* []){ "/bin/cp", hd_path, ssd_path, NULL});
+		_exit(1);
+	}
 	/*int numRead;
-	while((numRead = read(hd_file, buf, BUF_SIZE)) > 0)
+	while((numRead = fread(buf, BUF_SIZE, 1, hd_file)) > 0)
 	{
 		log_msg("writing to ssd");
-		if(write(ssd_file, buf, numRead) != numRead)
+		if(fwrite(buf, numRead, 1, ssd_file) != numRead)
 			log_msg("really bad copying error");	
 	}*/	
-	while((ch = fgetc(hd_file))!=EOF) fputc(ch, ssd_file);
+	
+	//while((ch = fgetc(hd_file))!=EOF) fputc(ch, ssd_file);
 	
 done:
 	fclose(hd_file);
@@ -197,13 +204,13 @@ void gen_priority(struct file_stat* file){
 	if(file->size > MAX_CACHE) file->p = 0;
     else file->p = priority;
       
-	log_msg("fixing heap"); 
+	//log_msg("fixing heap"); 
 	heap_delete(priority_heap, file->heap_pos);
     heap_insert(priority_heap, file);
-
+	/*
     char print[256];
     sprintf(print, "size:%d read/time:%d/%d write/time:%d/%d priority:%d", size, read, read_time, write, write_time, priority);
-    log_msg(print);
+    log_msg(print);*/
 }
 
 int callback(struct file_stat* file, int num_col, char** results, char** col_names){
