@@ -210,8 +210,6 @@ int cache_add(const char* path){
 	if(current_size > MAX_CACHE)
 	{
 		if(strcmp(priority_heap->elements[0]->path, path)==0){
-			log_msg("deleting self");
-			log_msg(path);
 			heap_delete(priority_heap, 0);
 			table_rem(cache_table, path);
 			current_size -= file->size;	
