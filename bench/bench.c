@@ -19,6 +19,7 @@
 
 int num_small, num_med, num_large, num_huge;
 int total;
+
 float p_small, p_med, p_large, p_huge;
 
 int bytes_read, bytes_write;

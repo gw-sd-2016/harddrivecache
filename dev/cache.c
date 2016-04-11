@@ -28,6 +28,13 @@
 #define READ_BIAS 1000
 #define WRITE_BIAS 0
 #define TIME_BIAS 1000
+#define MAX_CACHE 128000000000
+#define BUF_SIZE 4096
+
+#define SIZE_BIAS 10
+#define READ_BIAS 10
+#define WRITE_BIAS 0
+#define TIME_BIAS 10
 
 struct hashTable* cache_table;
 struct heap* priority_heap;
@@ -93,7 +100,6 @@ int cache_exists(const char* path){
 	}
 	else{
 		//log_msg("cache miss");
-		//log_miss();
 		free(new_path);
 		return 0;
 	}
@@ -205,8 +211,8 @@ int cache_add(const char* path){
 		file->size = st.st_size;
 		update_data(file);
 	}	
-	current_size += file->size;	
- 
+	current_size += file->size;
+    
 	if(current_size > MAX_CACHE)
 	{
 		if(strcmp(priority_heap->elements[0]->path, path)==0){
@@ -229,8 +235,6 @@ int cache_add(const char* path){
 		}
 	}
 
-	//pthread_t copier;
-	//pthread_create(&copier, NULL, copy_to_cache, path);
 	copy_to_cache(path);	
 	
 	free(hd_path);
@@ -239,10 +243,8 @@ int cache_add(const char* path){
 }
 int cache_remove(const char* path){
 	char* ssd_path = get_ssd_path(path);
-	//log_msg("removing from cache");
 	int ret = unlink(ssd_path);
 	free(ssd_path);	
-	//log_msg("removing from table");
 	struct file_stat* file = table_rem(cache_table, path);
     if(file) current_size -= file->size;
 	return ret;
@@ -356,7 +358,6 @@ int update_data(struct file_stat* file){
 	sqlite3_close(db);
 	return 0;	
 }
-
 int insert_data(struct file_stat* file){
 	sqlite3 *db;
 	char sql[512];
@@ -389,4 +390,3 @@ void cache_init(){
 	cache_table = table_create(10);
     priority_heap = heap_create(10);
 }
-
