@@ -73,7 +73,6 @@ struct file_stat* ll_find(struct linkedList *ll, char* path){
     struct file_stat* move;
     move = ll->head;
         
-	log_msg("searching");
     while(move!=NULL){
         if(strcmp(path, move->path)==0) return move;
 	  	move = move->next;

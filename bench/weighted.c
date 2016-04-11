@@ -36,29 +36,42 @@ void get_numbers(){
 	fclose(nfile);
 }
 
+int gen_weighted_random(int n){
+	int rand1 = rand()%2;
+	if(rand1){
+		return rand() % (3*n/20);
+	}
+	rand1 = rand()%2;
+	if(rand1){
+		return (rand() % (7*n/20)) + (3*n/20);
+	}
+	return (rand() % n/2) + n/2;
+}
+
 int gen_file(char* file){
 	int size = rand()%total + 1;
 	if(size <= num_small){
-		int file_num = rand()%num_small;
+		int file_num = gen_weighted_random(num_small);
 		sprintf(file, "%s/small/small%d", TEST_DIR, file_num);
 		return SMALL;
 	}
 	if(size > num_small && size <= (num_small+num_med)){
-		int file_num = rand()%num_med;
+		int file_num = gen_weighted_random(num_med);
 		sprintf(file, "%s/med/med%d", TEST_DIR, file_num);
 		return MED;
 	}
 	if(size > (num_small+num_med) && size <= (num_small+num_med+num_large)){
-		int file_num = rand()%num_large;
+		int file_num = gen_weighted_random(num_large);
 		sprintf(file, "%s/large/large%d", TEST_DIR, file_num);
 		return LARGE;
 	}
 	if(size > (num_small+num_med+num_large)){
-		int file_num = rand()%num_huge;
+		int file_num = gen_weighted_random(num_huge);
 		sprintf(file, "%s/huge/huge%d", TEST_DIR, file_num);
 		return HUGE;
 	}
 }
+
 void access_file() {
 	int i;
 	bytes_read = 0;

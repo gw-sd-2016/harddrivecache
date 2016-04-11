@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SMALL 4096
-#define MED 1048576
-#define LARGE 16777216
+#define SMALL 16384
+#define MED 524288
+#define LARGE 4194304
 #define HUGE 1073741824 
 
 #define MAX_SIZE 1073741824 
 
 //should add up to 1
-#define N_SMALL 0.6
-#define N_MED 0.3
-#define N_LARGE 0.1
+#define N_SMALL 0.0
+#define N_MED 0.2
+#define N_LARGE 0.8
 #define N_HUGE 0.0
 
 int num_small = 0;

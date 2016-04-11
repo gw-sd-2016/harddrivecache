@@ -1,0 +1,1 @@
+hits: 76283, misses: 23717, writes: 0

@@ -122,7 +122,9 @@ static int hdc_mkdir(const char *path, mode_t mode)
 {
 	int res;
 	char* new_path = get_hd_path(path);
+	char* ssd_path = get_ssd_path(path);
 	res = mkdir(new_path, mode);
+	res = mkdir(ssd_path, mode);
 	free(new_path);
 
 	if (res == -1)
@@ -271,10 +273,11 @@ static int hdc_read(const char *path, char *buf, size_t size, off_t offset,
 {
 	int fd;
 	int res;
-	
+	int hit;
+		
 	char* new_path;
 	//log_msg("read");
-	if(cache_exists(path)){
+	if(hit = cache_exists(path)){
 		new_path = get_ssd_path(path);
 		//log_msg(new_path);
 	}
@@ -292,11 +295,13 @@ static int hdc_read(const char *path, char *buf, size_t size, off_t offset,
 
 	res = pread(fd, buf, size, offset);
 	if (res == -1)
+	{
 		res = -errno;
-
+		hit = -1;
+	}
 	close(fd);
 	free(new_path);
-	return res;
+	return hit;
 }
 
 static int hdc_write(const char *path, const char *buf, size_t size,
