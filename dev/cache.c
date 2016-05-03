@@ -58,8 +58,6 @@ int cache_exists(const char* path){
 	struct file_stat* file = table_search(cache_table, path);
 	char * new_path = get_ssd_path(path);
 	if(access( new_path, R_OK ) != -1){
-		//log_msg("cache hit");
-		//log_hit();
 		if(!file){
 			file = file_stat_create(path, (int) time(0), 0, 0, 0, 0);
 			get_data(file);
@@ -68,38 +66,25 @@ int cache_exists(const char* path){
 			stat(new_path, &st);
 			file->size = st.st_size;
 
-			/*char print[256];
-    		sprintf(print, "size: %d read/time:%d/%d", file->size, file->numreads, file->lastread);
-    		log_msg(print);*/	
-
 			current_size += file->size;
             table_add(&cache_table, file);
 			heap_insert(priority_heap, file);
-			//log_msg("inserted into ds");
 		}
 		file->numreads++;
 		int diff = file->lastread - (int) time(0);
 		file->freq_hist[time_to_index(diff)]++;
 		file->lastread = (int) time(0);
-		//log_msg("generating priority");
 		gen_priority(file);
-		//log_msg("updating db");
 	
 		update_data(file);
 		while(current_size > MAX_CACHE){
-			//char msg[256];
-			//sprintf(msg, "total size: %d, removing from heap of size %d", current_size, priority_heap->n);
-			//log_msg(msg);
 			struct file_stat* deleted = heap_delete(priority_heap, 0);
-			//log_msg(deleted->path);
 			cache_remove(deleted->path);
 		}
-        //while(current_size > MAX_CACHE) cache_remove(heap_delete(priority_heap, 0)->path);
 		free(new_path);
 		return 1;
 	}
 	else{
-		//log_msg("cache miss");
 		free(new_path);
 		return 0;
 	}
@@ -118,29 +103,32 @@ void make_dirs(const char* path){
 		sprintf(fill_path, "%s/%s", fill_path, curr);
 		next = strtok(NULL, "/");
 		if(!next) break;
-		//log_msg(fill_path);
 		mkdir(fill_path, S_IRWXU); 
 		curr = next;
 	}
 }
 
 void copy_to_cache(const char* path){
-	/*pid_t pid = fork();
+	/*
+	OPTION 1:
+	
+	pid_t pid = fork();
 
 	if(pid == 0){
 		execv("/bin/cp", (char* []){ "/bin/cp", hd_path, ssd_path, NULL});
 		_exit(1);
 	}
 		
+	OPTION 2:
 	while((ch = fgetc(hd_file))!=EOF) fputc(ch, ssd_file);
+	
+	OPTION 3:
 	*/
+	
 	char buf[BUF_SIZE];
 	int numRead = 0, numWrite = 0;
 	char* hd_path = get_hd_path(path);
 	char* ssd_path = get_ssd_path(path);
-
-	//log_msg("copying");
-	//pthread_detach(pthread_self());
 
 	int hd_file = open(hd_path, O_RDONLY);
 	int ssd_file = open(ssd_path, O_WRONLY | O_CREAT, 777);
@@ -156,7 +144,6 @@ void copy_to_cache(const char* path){
 			break;	
 		}
 	}
-	//log_msg("done copying");
 	close(hd_file);
 	close(ssd_file);
 	free(hd_path);
@@ -169,11 +156,6 @@ int cache_add(const char* path){
 	char* ssd_path = get_ssd_path(path);
 	char buf[BUF_SIZE];
 	char ch;
-
-	//log_msg("adding to cache");
-	//log_msg(path);
-	//log_msg(hd_path);
-	//log_msg(ssd_path);
 		
 	struct file_stat* file = table_search(cache_table, path);
 
@@ -187,14 +169,8 @@ int cache_add(const char* path){
 		file->numwrites++;
 		file->lastwrite = (int) time(0);
 	}
-	//FILE* hd_file, *ssd_file;
-	//hd_file = fopen(hd_path, "r");
-	//if(hd_file == NULL) return -1;
-	
+
 	make_dirs(path);
-	
-	//ssd_file = fopen(ssd_path, "w");
-	//if(ssd_file == NULL) return -1;
 	
 	struct stat st;
 	stat(hd_path, &st);
@@ -205,7 +181,6 @@ int cache_add(const char* path){
 		table_add(&cache_table, file);
 		heap_insert(priority_heap, file);
 		gen_priority(file);
-		//insert_data(file);
 	}
 	else{
 		file->size = st.st_size;
@@ -225,11 +200,7 @@ int cache_add(const char* path){
 		}
 		else{
 			while(current_size > MAX_CACHE){
-				//char msg[256];
-				//sprintf(msg, "total size: %d, removing from heap of size %d", current_size, priority_heap->n);
-				//log_msg(msg);
 				struct file_stat* deleted = heap_delete(priority_heap, 0);
-				//log_msg(deleted->path);
 				cache_remove(deleted->path);
 			}
 		}
@@ -282,13 +253,8 @@ void gen_priority(struct file_stat* file){
 	if(file->size > MAX_CACHE) file->p = 0;
     else file->p = priority;
       
-	//log_msg("fixing heap"); 
 	heap_delete(priority_heap, file->heap_pos);
     heap_insert(priority_heap, file);
-	/*
-    char print[256];
-    sprintf(print, "size:%d read/time:%d/%d write/time:%d/%d priority:%d", size, read, read_time, write, write_time, priority);
-    log_msg(print);*/
 }
 
 int callback(struct file_stat* file, int num_col, char** results, char** col_names){
@@ -373,8 +339,7 @@ int insert_data(struct file_stat* file){
 		sqlite3_close(db);
 		return -1;
 	}
-
-	//log_msg(sql);
+	
 	ret = sqlite3_exec(db, sql, callback, file, &err);
 
 	if(ret != SQLITE_OK){
